@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'AT@95041uls'
+                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'AT@95041ul'
             }
         }
         stage('Install Dependencies') {
