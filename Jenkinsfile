@@ -36,7 +36,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'AT@95041ul') {
                         docker.image("atulkr7/myproject:${env.BUILD_ID}").push()
                     }
                 }
