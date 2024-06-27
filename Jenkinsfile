@@ -6,14 +6,14 @@ pipeline {
     }
 
     environment {
-        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
-        GITHUB_CREDENTIALS = credentials('github-credentials')
+        DOCKER_CREDENTIALS = credentials('AT@95041ul')
+        GITHUB_CREDENTIALS = credentials('AT@95041ul')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'github-credentials'
+                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'AT@95041uls'
             }
         }
         stage('Install Dependencies') {
