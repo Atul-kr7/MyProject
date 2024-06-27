@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/your-repo/your-angular-project.git', credentialsId: 'github-credentials'
+                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'github-credentials'
             }
         }
         stage('Install Dependencies') {
@@ -29,7 +29,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("your-dockerhub-username/your-image-name:${env.BUILD_ID}")
+                    docker.build("atulkr7/myproject:${env.BUILD_ID}")
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        docker.image("your-dockerhub-username/your-image-name:${env.BUILD_ID}").push()
+                        docker.image("atulkr7/myproject:${env.BUILD_ID}").push()
                     }
                 }
             }
