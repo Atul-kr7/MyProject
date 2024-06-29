@@ -2,18 +2,18 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs' // The name of the NodeJS installation
+        nodejs 'nodejs' // Adjust based on your NodeJS installation name
     }
 
     environment {
-        DOCKER_CREDENTIALS = credentials('AT@95041ul')
-        GITHUB_CREDENTIALS = credentials('github-pat')
+        DOCKER_CREDENTIALS = credentials('docker-credentials-id') // Use correct ID
+        GITHUB_CREDENTIALS = credentials('github-pat-id') // Use correct ID
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Atul-kr7/MyProject.git', credentialsId: 'github-pat'
+                git url: 'https://github.com/Atul-kr7/MyProject.git', branch: 'master', credentialsId: 'github-pat-id'
             }
         }
         stage('Install Dependencies') {
@@ -36,7 +36,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'AT@95041ul') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-credentials-id') {
                         docker.image("atulkr7/myproject:${env.BUILD_ID}").push()
                     }
                 }
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'kube-config', serverUrl: 'https://your-kubernetes-cluster']) {
+                withKubeConfig([credentialsId: 'kube-config-id', serverUrl: 'https://your-kubernetes-cluster']) {
                     sh 'kubectl apply -f deployment.yaml'
                 }
             }
