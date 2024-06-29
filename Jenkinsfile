@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         nodejs 'nodejs' // Adjust based on your NodeJS installation name
+        dockerTool 'docker' // Use the name configured in Jenkins
     }
 
     environment {
